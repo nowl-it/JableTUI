@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 /**
  * <h1>Java Table Text User Interface (JableTUI)</h1>
- * <p>A simple table text user interface for Java</p>
+ * <p>
+ * A simple table text user interface for Java
+ * </p>
  *
  * @author <a href="https://github.com/nowl-it">NOwL</a>
  * @version 0.0.1beta
@@ -38,8 +40,9 @@ public class JableTUI {
         this.tablePageSize = pageSize;
         this.tableData = data;
 
-        this.tableCurrentRecords = tableData.subList(Math.min(this.tablePageSize * this.tableCurrentPage - this.tablePageSize, this.tableData.size()),
-            Math.min(this.tablePageSize * this.tableCurrentPage, this.tableData.size()));
+        this.tableCurrentRecords = tableData.subList(
+                Math.min(this.tablePageSize * this.tableCurrentPage - this.tablePageSize, this.tableData.size()),
+                Math.min(this.tablePageSize * this.tableCurrentPage, this.tableData.size()));
 
         this.tableColumns = new ArrayList<>(tableData.getFirst().keySet());
     }
@@ -87,7 +90,6 @@ public class JableTUI {
         } while (this.tableMenuSelect != 0);
     }
 
-
     /**
      * Custom table menu
      *
@@ -123,7 +125,7 @@ public class JableTUI {
             String longestStringColumn = getLongestStringColumn(i);
             int totalSpaces = longestStringColumn.length() - columns.get(i).length() + 2;
             System.out.print("|" + " ".repeat(totalSpaces / 2) + columns.get(i)
-                + " ".repeat(totalSpaces - (totalSpaces / 2)));
+                    + " ".repeat(totalSpaces - (totalSpaces / 2)));
             if (i == columns.size() - 1) {
                 System.out.println("|");
             }
@@ -136,7 +138,7 @@ public class JableTUI {
             String value = record.get(this.tableColumns.get(i));
             int totalSpaces = longestStringColumn.length() - value.length() + 2;
             System.out.print("|" + " ".repeat(totalSpaces / 2) + value
-                + " ".repeat(totalSpaces - (totalSpaces / 2)));
+                    + " ".repeat(totalSpaces - (totalSpaces / 2)));
             if (i == this.tableColumns.size() - 1) {
                 System.out.println("|");
             }
@@ -144,7 +146,8 @@ public class JableTUI {
     }
 
     private void printInfo() {
-        System.out.println("Page " + this.tableCurrentPage + " / " + (int) Math.ceil((double) this.tableData.size() / this.tablePageSize));
+        System.out.println("Page " + this.tableCurrentPage + " / "
+                + (int) Math.ceil((double) this.tableData.size() / this.tablePageSize));
     }
 
     private void firstPage() {
@@ -162,7 +165,8 @@ public class JableTUI {
     }
 
     private void nextPage() {
-        if (this.tableCurrentPage < (int) Math.ceil((double) this.tableData.size() / this.tablePageSize) && this.tableData.size() > this.tablePageSize) {
+        if (this.tableCurrentPage < (int) Math.ceil((double) this.tableData.size() / this.tablePageSize)
+                && this.tableData.size() > this.tablePageSize) {
             this.tableCurrentPage++;
             this.updateCurrentTableRecords();
         }
@@ -176,8 +180,9 @@ public class JableTUI {
     }
 
     private void updateCurrentTableRecords() {
-        this.tableCurrentRecords = this.tableData.subList(Math.min(this.tablePageSize * this.tableCurrentPage - this.tablePageSize, this.tableData.size()),
-            Math.min(this.tablePageSize * this.tableCurrentPage, this.tableData.size()));
+        this.tableCurrentRecords = this.tableData.subList(
+                Math.min(this.tablePageSize * this.tableCurrentPage - this.tablePageSize, this.tableData.size()),
+                Math.min(this.tablePageSize * this.tableCurrentPage, this.tableData.size()));
     }
 
     private void tableMenu() {
